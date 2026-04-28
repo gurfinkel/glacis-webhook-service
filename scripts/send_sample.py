@@ -75,7 +75,9 @@ def post_sample(name: str) -> bool:
 
 
 def main() -> int:
-    parser = argparse.ArgumentParser(description=__doc__.split("\n\n")[0])
+    parser = argparse.ArgumentParser(
+        description="Sign and post a sample webhook to the local service.",
+    )
     parser.add_argument(
         "name", nargs="?", default="shipment_fedex",
         help="sample basename without .json (default: shipment_fedex)",
