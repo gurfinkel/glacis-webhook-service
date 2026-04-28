@@ -72,7 +72,7 @@ After the demo:
 
 ```bash
 ./scripts/send_sample.py shipment_fedex          # post a single sample
-docker-compose down -v                            # tear down
+docker compose down -v                            # tear down
 ```
 
 Browse processed events and triage flagged extractions in the
@@ -332,14 +332,14 @@ compile.
 # Unit + workflow tests (no infra; uses Temporal in-memory test env)
 uv run pytest -v
 
-# Integration (requires `docker-compose up redis temporal postgres`)
+# Integration (requires `docker compose up redis temporal postgres`)
 uv run pytest -m integration -v
 
 # Live LLM behavioral regression (billed; requires OPENROUTER_API_KEY)
 RUN_LLM_TESTS=1 uv run pytest -m llm -v
 
 # Load test
-docker-compose up -d
+docker compose up -d
 k6 run load/ingest.k6.js
 
 # Lint + type check

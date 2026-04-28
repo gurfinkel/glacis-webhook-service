@@ -1,4 +1,4 @@
-"""Development settings — local docker-compose."""
+"""Development settings — local docker compose."""
 
 from .base import *  # noqa: F401,F403
 

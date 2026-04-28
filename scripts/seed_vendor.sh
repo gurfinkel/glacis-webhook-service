@@ -14,7 +14,7 @@ ADMIN_EMAIL="${DJANGO_SUPERUSER_EMAIL:-admin@example.com}"
 ADMIN_PASSWORD="${DJANGO_SUPERUSER_PASSWORD:-admin}"
 
 echo "Seeding demo vendor credential ($DEMO_VENDOR_ID)..."
-docker-compose exec -T api python manage.py shell -c "
+docker compose exec -T api python manage.py shell -c "
 from webhooks.models import VendorCredential
 VendorCredential.objects.update_or_create(
     vendor_id='$DEMO_VENDOR_ID',
@@ -24,7 +24,7 @@ print('vendor ok: $DEMO_VENDOR_ID')
 "
 
 echo "Ensuring Django superuser ($ADMIN_USERNAME)..."
-docker-compose exec -T \
+docker compose exec -T \
     -e DJANGO_SUPERUSER_USERNAME="$ADMIN_USERNAME" \
     -e DJANGO_SUPERUSER_EMAIL="$ADMIN_EMAIL" \
     -e DJANGO_SUPERUSER_PASSWORD="$ADMIN_PASSWORD" \

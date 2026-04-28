@@ -1,4 +1,8 @@
-#!/usr/bin/env python3
+#!/usr/bin/env -S uv run --quiet --script
+# /// script
+# requires-python = ">=3.12"
+# dependencies = ["requests", "standardwebhooks"]
+# ///
 """Sign and post a sample webhook to the local service.
 
 Usage:
@@ -57,7 +61,7 @@ def post_sample(name: str) -> bool:
         )
     except requests.exceptions.ConnectionError as e:
         print(f"  [error] could not reach {ENDPOINT}: {e}", file=sys.stderr)
-        print("  is docker-compose up?", file=sys.stderr)
+        print("  is docker compose up?", file=sys.stderr)
         return False
 
     ok = r.status_code == 200

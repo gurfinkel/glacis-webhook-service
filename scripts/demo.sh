@@ -2,7 +2,7 @@
 # One-command end-to-end demo.
 #
 #   1. Verify .env has OPENROUTER_API_KEY (LLM is mandatory, no mock).
-#   2. docker-compose up -d  + wait for healthchecks.
+#   2. docker compose up -d  + wait for healthchecks.
 #   3. Seed demo vendor credential + Django superuser.
 #   4. Post every sample in samples/ to /webhook.
 #   5. Wait for the workflows to run and poll /events/<key> for each.
@@ -41,10 +41,10 @@ MSG
     exit 1
 fi
 
-# --- 2. docker-compose up + wait ----------------------------------------------
+# --- 2. docker compose up + wait ----------------------------------------------
 
 echo "Bringing up the stack..."
-docker-compose up -d --build
+docker compose up -d --build
 
 echo "Waiting for API to become ready..."
 for i in {1..60}; do
@@ -53,7 +53,7 @@ for i in {1..60}; do
         break
     fi
     if [[ $i -eq 60 ]]; then
-        echo "ERROR: API did not become ready in 60s. Check 'docker-compose logs api'." >&2
+        echo "ERROR: API did not become ready in 60s. Check 'docker compose logs api'." >&2
         exit 1
     fi
     sleep 1
@@ -77,7 +77,7 @@ sleep 10
 
 echo
 echo "Event status (one-glance proof the pipeline ran end-to-end):"
-docker-compose exec -T api python manage.py shell -c "
+docker compose exec -T api python manage.py shell -c "
 from collections import Counter
 from webhooks.models import WebhookEvent
 events = WebhookEvent.objects.all()
@@ -102,5 +102,5 @@ Demo complete.
 
 Next:
   ./scripts/send_sample.py shipment_fedex   # post a single sample
-  docker-compose down -v                     # tear down
+  docker compose down -v                     # tear down
 MSG

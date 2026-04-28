@@ -21,7 +21,7 @@ env = environ.Env(
     REDIS_URL=(str, "redis://localhost:6379/0"),
     # Webhook service
     OPENROUTER_API_KEY=(str, ""),
-    OPENROUTER_MODEL=(str, "anthropic/claude-sonnet-4-20250514"),
+    OPENROUTER_MODEL=(str, "openai/gpt-4o-mini"),
     # Temporal
     TEMPORAL_ADDRESS=(str, "localhost:7233"),
     TEMPORAL_NAMESPACE=(str, "default"),

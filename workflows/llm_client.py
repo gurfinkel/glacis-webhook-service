@@ -96,6 +96,7 @@ async def _post_to_openrouter(system_prompt: str, user_prompt: str, *, label: st
                     {"role": "user", "content": user_prompt},
                 ],
                 "temperature": 0.0,
+                "max_tokens": 1024,
                 "response_format": {"type": "json_object"},
             },
         )

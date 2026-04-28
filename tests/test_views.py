@@ -2,7 +2,7 @@
 
 These exercise the full DRF view stack — auth, permission, serializer,
 view body — but stub the I/O modules. True integration tests live behind
-@pytest.mark.integration and require docker-compose up.
+@pytest.mark.integration and require docker compose up.
 """
 
 from datetime import UTC, datetime
