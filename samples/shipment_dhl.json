@@ -1,0 +1,18 @@
+{
+  "shipment": {
+    "id": "DHL-7890456123",
+    "pieces": [
+      {
+        "trackingNumber": "JD014600003816800613",
+        "statusCode": "transit",
+        "statusDescription": "Shipment in transit",
+        "location": {"city": "Frankfurt", "country": "DE"}
+      }
+    ],
+    "timestamps": {
+      "shipped": "2026-01-14T08:00:00Z",
+      "lastUpdate": "2026-01-15T16:45:00Z"
+    }
+  },
+  "account": "DHL_EXPRESS_EU"
+}

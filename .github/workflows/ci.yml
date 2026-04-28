@@ -1,0 +1,46 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  lint-typecheck-test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install uv
+        uses: astral-sh/setup-uv@v3
+        with:
+          enable-cache: true
+
+      - name: Set up Python
+        run: uv python install 3.12
+
+      - name: Install dependencies
+        run: uv sync --frozen
+
+      - name: Lint (ruff)
+        run: uv run ruff check .
+
+      - name: Type check (pyright)
+        run: uv run pyright .
+
+      - name: Migrations are committed
+        run: uv run python manage.py makemigrations --check --dry-run
+        env:
+          OPENROUTER_API_KEY: test-key-not-real
+          DJANGO_SECRET_KEY: test-secret
+          ALLOWED_HOSTS: '*'
+          REDIS_URL: redis://localhost:6379/0
+          POSTGRES_URL: postgres://postgres:postgres@localhost:5432/glacis
+
+      - name: Run unit & workflow tests
+        # Workflow tests use temporalio's in-process test server — no Docker.
+        # Integration tests (live Redis/Temporal/Postgres) run separately;
+        # k6 load test runs against a compose stack on PRs touching the hot
+        # path (see Production Improvements in README).
+        run: uv run pytest -v -m "not integration and not llm"

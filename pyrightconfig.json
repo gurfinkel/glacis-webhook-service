@@ -1,0 +1,16 @@
+{
+  "include": ["project", "webhooks", "workflows", "tests"],
+  "exclude": [
+    "**/.venv",
+    "**/__pycache__",
+    "**/migrations",
+    ".git",
+    ".pytest_cache",
+    ".ruff_cache",
+    "node_modules"
+  ],
+  "pythonVersion": "3.12",
+  "typeCheckingMode": "basic",
+  "reportMissingImports": "error",
+  "reportMissingTypeStubs": "none"
+}

@@ -1,0 +1,17 @@
+{
+  "billing": {
+    "invoice_number": "FB-90821",
+    "amount_due": {
+      "value": 2300.50,
+      "currency": "EUR"
+    },
+    "supplier": {
+      "name": "FastBoat Shipping GmbH",
+      "id": "FASTBOAT_DE"
+    },
+    "services": [
+      {"route": "Hamburg → Rotterdam", "containers": 2, "rate_per_container": 1150.25}
+    ],
+    "created_at": "2026-01-10T09:00:00Z"
+  }
+}

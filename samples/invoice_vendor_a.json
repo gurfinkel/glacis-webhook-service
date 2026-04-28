@@ -1,0 +1,14 @@
+{
+  "doc_type": "INV",
+  "invoice_number": "INV-2026-0042",
+  "vendor_code": "ACME_LOGISTICS",
+  "line_items": [
+    {"description": "Ground shipping — Jan batch", "qty": 150, "unit_price": 8.50},
+    {"description": "Fuel surcharge", "qty": 1, "unit_price": 127.50}
+  ],
+  "total": 1402.50,
+  "curr": "USD",
+  "issued_date": "2026-01-15",
+  "due_date": "2026-02-15",
+  "payment_terms": "NET30"
+}

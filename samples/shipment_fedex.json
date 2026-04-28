@@ -1,0 +1,13 @@
+{
+  "TrackingNumber": "794644790132",
+  "EventType": "IN_TRANSIT",
+  "EventTimestamp": "2026-01-15T14:30:00-05:00",
+  "CarrierCode": "FEDEX",
+  "ServiceType": "GROUND",
+  "OriginCity": "Memphis",
+  "OriginState": "TN",
+  "DestinationCity": "New York",
+  "DestinationState": "NY",
+  "Weight": {"Value": 5.2, "Units": "LB"},
+  "EstimatedDelivery": "2026-01-18T17:00:00-05:00"
+}

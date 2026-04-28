@@ -1,0 +1,64 @@
+[project]
+name = "glacis-webhook-service"
+version = "0.2.0"
+description = "AI-powered webhook ingestion service for supply chain event processing (Django rewrite)"
+readme = "README.md"
+requires-python = ">=3.12,<3.13"
+dependencies = [
+    "django>=5.2,<5.3",
+    "djangorestframework>=3.16",
+    "django-environ>=0.12",
+    "django-ratelimit>=4.1",
+    "psycopg[binary]>=3.2",
+    "redis>=5.2",
+    "temporalio>=1.10",
+    "standardwebhooks>=1.0",
+    "pydantic>=2.9",
+    "httpx>=0.28",
+    "gunicorn>=23.0",
+    "asgiref>=3.8",
+    "opentelemetry-api>=1.29",
+    "opentelemetry-sdk>=1.29",
+    "opentelemetry-exporter-otlp>=1.29",
+    "opentelemetry-instrumentation-django>=0.50b0",
+    "opentelemetry-instrumentation-psycopg>=0.50b0",
+    "opentelemetry-instrumentation-redis>=0.50b0",
+    "opentelemetry-instrumentation-httpx>=0.50b0",
+    "opentelemetry-instrumentation-logging>=0.50b0",
+]
+
+[dependency-groups]
+dev = [
+    "pytest>=8.3",
+    "pytest-django>=4.9",
+    "pytest-asyncio>=0.25",
+    "pytest-mock>=3.14",
+    "pyright>=1.1",
+    "ruff>=0.8",
+    "django-stubs>=5.1",
+    "djangorestframework-stubs>=3.16",
+]
+
+[tool.ruff]
+line-length = 120
+target-version = "py312"
+extend-exclude = ["**/migrations/*"]
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "N", "UP", "B", "DJ"]
+ignore = [
+    "DJ001",  # Avoid using null=True on string-based fields — we have legitimate optional fields
+]
+
+[tool.ruff.lint.per-file-ignores]
+"webhooks/prompts.py" = ["E501"]
+
+[tool.pytest.ini_options]
+DJANGO_SETTINGS_MODULE = "project.settings.test"
+asyncio_mode = "auto"
+testpaths = ["tests"]
+norecursedirs = [".venv", ".git"]
+markers = [
+    "integration: requires live infrastructure (Redis, Temporal, PostgreSQL)",
+    "llm: makes a real, billed OpenRouter API call (gated on OPENROUTER_API_KEY)",
+]

@@ -1,0 +1,14 @@
+{
+  "notification_type": "status_change",
+  "reference": "REF-99182",
+  "data": {
+    "items": ["SKU-001", "SKU-002"],
+    "status": "processing",
+    "updated_by": "system",
+    "metadata": {
+      "source": "warehouse_mgmt",
+      "region": "US-EAST"
+    }
+  },
+  "ts": 1737000000
+}
